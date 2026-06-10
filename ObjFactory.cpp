@@ -23,20 +23,24 @@ std::unique_ptr<Object> ObjectFactory::createObject(
         return nullptr;
     }
 
-    switch (type) //fabryka obiektów (typ)
+    switch (type) //fabryka obiektÃ³w (typ)
     {
         case ObjectType::Gear:
             return std::make_unique<Gear>(
                 objData.vertices,
                 objData.indices,
                 rotationSpeed,
-                initialPosition
+                initialPosition,
+                glm::vec3(objData.center.x, objData.center.y, objData.center.z)
             );
 
         default:
         {
             std::unique_ptr<Object> object = std::make_unique<Object>(initialPosition);
             object->mesh = new Mesh(objData.vertices, objData.indices);
+            object->setRotationPivot(
+                glm::vec3(objData.center.x, objData.center.y, objData.center.z)
+            );
             return object;
         }
     }

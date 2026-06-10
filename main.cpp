@@ -56,56 +56,193 @@ int main()
 
 
     //tworzenie obiektów 
-    auto gear1 = ObjectFactory::createObject(
-        ObjectType::Gear, //object type (class)
-        "Models/gear.obj", //path to model
-        0.01f, //scale
-        1.0f, //rotation speed
-        glm::vec3(-0.5f, 0.0f, 0.0f) //initial position
+// tworzenie obiektów
+
+    auto gear = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/gear.obj",
+        0.01f,
+        1.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
     );
 
-    auto gear2 = ObjectFactory::createObject(
+    auto gear_2 = ObjectFactory::createObject(
         ObjectType::Gear,
         "Models/gear_2.obj",
+        0.01f,
+        2.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto ratchet_spring = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/ratchet_spring.obj",
         0.01f,
         0.0f,
         glm::vec3(0.0f, 0.0f, 0.0f)
     );
-    auto gear3 = ObjectFactory::createObject(
+
+    auto ratchet_key = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/ratchet_key.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto ratchet = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/ratchet.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto gear_5 = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/gear_5.obj",
+        0.01f,
+        4.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto gear_3 = ObjectFactory::createObject(
         ObjectType::Gear,
         "Models/gear_3.obj",
         0.01f,
         0.0f,
         glm::vec3(0.0f, 0.0f, 0.0f)
     );
-    auto gear5 = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/gear_5.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-    auto gear6 = ObjectFactory::createObject(
+
+    auto gear_6 = ObjectFactory::createObject(
         ObjectType::Gear,
         "Models/gear_6.obj",
         0.01f,
-        0.0f,
+        3.0f,
         glm::vec3(0.0f, 0.0f, 0.0f)
     );
-    auto gear8 = ObjectFactory::createObject(
+
+    auto gear_8 = ObjectFactory::createObject(
         ObjectType::Gear,
         "Models/gear_8.obj",
+        0.01f,
+        0.166666f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto dial = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/dial.obj",
         0.01f,
         0.0f,
         glm::vec3(0.0f, 0.0f, 0.0f)
     );
 
-    objects.push_back(std::move(gear1));
-    objects.push_back(std::move(gear2));
-    objects.push_back(std::move(gear3));
-    objects.push_back(std::move(gear5));
-    objects.push_back(std::move(gear6));
-    objects.push_back(std::move(gear8));
+    auto frame = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/frame.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto frame_2 = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/frame_2.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto gear_1hour_gear = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/gear_1hour_gear.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto gear_7second_gear = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/gear_7second_gear.obj",
+        0.01f,
+        0.333333f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto housing_gear_4minute_gear = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/housing_gear_4minute_gear.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto new_escapement_gear_9 = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/new_escapement_gear_9.obj",
+        0.01f,
+        0.111111f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto new_mainspring = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/new_mainspring.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto new_palace = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/new_palace.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    auto ustawObrot = [](std::unique_ptr<Object>& object) {
+
+    };
+
+    ustawObrot(gear);
+    ustawObrot(gear_2);
+    ustawObrot(ratchet_spring);
+    ustawObrot(ratchet_key);
+    ustawObrot(ratchet);
+    ustawObrot(gear_5);
+    ustawObrot(gear_3);
+    ustawObrot(gear_6);
+    ustawObrot(gear_8);
+    ustawObrot(dial);
+    ustawObrot(frame);
+    ustawObrot(frame_2);
+    ustawObrot(gear_1hour_gear);
+    ustawObrot(gear_7second_gear);
+    ustawObrot(housing_gear_4minute_gear);
+    ustawObrot(new_escapement_gear_9);
+    ustawObrot(new_mainspring);
+    ustawObrot(new_palace);
+
+    objects.push_back(std::move(gear));
+    objects.push_back(std::move(gear_2));
+    objects.push_back(std::move(ratchet_spring));
+    objects.push_back(std::move(ratchet_key));
+    objects.push_back(std::move(ratchet));
+    objects.push_back(std::move(gear_5));
+    objects.push_back(std::move(gear_3));
+    objects.push_back(std::move(gear_6));
+    objects.push_back(std::move(gear_8));
+    objects.push_back(std::move(dial));
+    objects.push_back(std::move(frame));
+    objects.push_back(std::move(frame_2));
+    objects.push_back(std::move(gear_1hour_gear));
+    objects.push_back(std::move(gear_7second_gear));
+    objects.push_back(std::move(housing_gear_4minute_gear));
+    objects.push_back(std::move(new_escapement_gear_9));
+    objects.push_back(std::move(new_mainspring));
+    objects.push_back(std::move(new_palace));
 
 
     for (auto& object : objects)
@@ -131,7 +268,24 @@ int main()
         glUseProgram(shaderProgram);
 
 
+        glm::mat4 view = glm::lookAt(
+            glm::vec3(0.0f, 5.0f, 0.0f), //kamera
+            glm::vec3(0.0f, 0.0f, 0.0f), //punkt na który patrzy kamera
+            glm::vec3(0.0f, 0.0f, 1.0f)  //góra kamery
+        );
 
+        glm::mat4 projection = glm::perspective(
+            glm::radians(45.0f), //k¹t widzenia
+            800.0f / 600.0f, //aspect ratio
+            0.1f, //near plane
+            100.0f //far plane
+		);
+
+		unsigned int viewloc = glGetUniformLocation(shaderProgram, "view");
+        glUniformMatrix4fv(viewloc, 1, GL_FALSE, glm::value_ptr(view));
+
+        unsigned int projectionLoc = glGetUniformLocation(shaderProgram, "projection");
+        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
         for (auto& object : objects)
         {

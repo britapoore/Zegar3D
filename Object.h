@@ -14,6 +14,7 @@ public:
 
 protected:
     glm::vec3 initialPosition;
+    glm::vec3 rotationPivot = glm::vec3(0.0f);
 
 public:
     Object() = default;
@@ -39,6 +40,11 @@ public:
         return initialPosition;
     }
 
+    void setRotationPivot(const glm::vec3& pivot)
+    {
+        rotationPivot = pivot;
+    }
+
     virtual void update(float deltaTime)
     {
     }
@@ -53,13 +59,15 @@ public:
         glm::mat4 model = glm::mat4(1.0f);
 
         model = glm::translate(model, transform.position);
+        model = glm::translate(model, rotationPivot);
 
         model = glm::rotate(
             model,
-            transform.rotation.z,
-            glm::vec3(0.0f, 0.0f, 1.0f)
+            transform.rotation.y,
+            glm::vec3(0.0f, 1.0f, 0.0f)
         );
 
+        model = glm::translate(model, -rotationPivot);
         model = glm::scale(model, transform.scale);
 
         unsigned int modelLocation = glGetUniformLocation(shaderProgram, "model");
