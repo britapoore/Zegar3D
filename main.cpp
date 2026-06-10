@@ -1,5 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "ObjFactory.h"
 #include "Shader.h"
@@ -54,26 +56,57 @@ int main()
 
 
     //tworzenie obiektów 
-    objects.push_back(ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/gear.obj",
-        0.01f,
-        1.0f
-    ));
+    auto gear1 = ObjectFactory::createObject(
+        ObjectType::Gear, //object type (class)
+        "Models/gear.obj", //path to model
+        0.01f, //scale
+        1.0f, //rotation speed
+        glm::vec3(-0.5f, 0.0f, 0.0f) //initial position
+    );
 
-    objects.push_back(ObjectFactory::createObject(
+    auto gear2 = ObjectFactory::createObject(
         ObjectType::Gear,
-        "Models/gear.obj",
+        "Models/gear_2.obj",
         0.01f,
-        -1.0f
-    ));
-
-    objects.push_back(ObjectFactory::createObject(
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+    auto gear3 = ObjectFactory::createObject(
         ObjectType::Gear,
-        "Models/gear.obj",
-        0.03f,
-        1.1f
-    ));
+        "Models/gear_3.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+    auto gear5 = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/gear_5.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+    auto gear6 = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/gear_6.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+    auto gear8 = ObjectFactory::createObject(
+        ObjectType::Gear,
+        "Models/gear_8.obj",
+        0.01f,
+        0.0f,
+        glm::vec3(0.0f, 0.0f, 0.0f)
+    );
+
+    objects.push_back(std::move(gear1));
+    objects.push_back(std::move(gear2));
+    objects.push_back(std::move(gear3));
+    objects.push_back(std::move(gear5));
+    objects.push_back(std::move(gear6));
+    objects.push_back(std::move(gear8));
+
 
     for (auto& object : objects)
     {
@@ -97,10 +130,13 @@ int main()
 
         glUseProgram(shaderProgram);
 
+
+
+
         for (auto& object : objects)
         {
             object->update(deltaTime);
-            object->draw();
+            object->draw(shaderProgram);
         }
 
         glfwSwapBuffers(window);
