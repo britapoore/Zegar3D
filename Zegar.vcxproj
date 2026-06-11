@@ -132,16 +132,20 @@
     <ClCompile Include="Gear.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="ObjectsDefinition.cpp" />
     <ClCompile Include="ObjFactory.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
+    <ClCompile Include="Pendulum.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gear.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectsDefinition.h" />
     <ClInclude Include="ObjFactory.h" />
     <ClInclude Include="ObjLoader.h" />
+    <ClInclude Include="Pendulum.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Types.h" />

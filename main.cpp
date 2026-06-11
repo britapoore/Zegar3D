@@ -5,11 +5,15 @@
 
 #include "ObjFactory.h"
 #include "Shader.h"
+#include "ObjectsDefinition.h"
 
 #include <iostream>
 #include <vector>
 #include <memory>
 #include <glm/glm.hpp>
+#include <cmath>
+#define M_PI 3.14159265358979323846
+
 
 // Zmienne kamery
 glm::vec3 cameraPos   = glm::vec3(0.0f, 5.0f, 15.0f);
@@ -97,195 +101,7 @@ int main()
 
     std::vector<std::unique_ptr<Object>> objects; //tablica obiektów 
 
-
-    //tworzenie obiektów 
-// tworzenie obiektów
-
-    auto gear = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/gear.obj",
-        0.01f,
-        1.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto gear_2 = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/gear_2.obj",
-        0.01f,
-        2.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto ratchet_spring = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/ratchet_spring.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto ratchet_key = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/ratchet_key.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto ratchet = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/ratchet.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto gear_5 = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/gear_5.obj",
-        0.01f,
-        4.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto gear_3 = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/gear_3.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto gear_6 = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/gear_6.obj",
-        0.01f,
-        3.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto gear_8 = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/gear_8.obj",
-        0.01f,
-        0.166666f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto dial = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/dial.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto frame = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/frame.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto frame_2 = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/frame_2.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto gear_1hour_gear = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/gear_1hour_gear.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto gear_7second_gear = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/gear_7second_gear.obj",
-        0.01f,
-        0.333333f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto housing_gear_4minute_gear = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/housing_gear_4minute_gear.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto new_escapement_gear_9 = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/new_escapement_gear_9.obj",
-        0.01f,
-        0.111111f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto new_mainspring = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/new_mainspring.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto new_palace = ObjectFactory::createObject(
-        ObjectType::Gear,
-        "Models/new_palace.obj",
-        0.01f,
-        0.0f,
-        glm::vec3(0.0f, 0.0f, 0.0f)
-    );
-
-    auto ustawObrot = [](std::unique_ptr<Object>& object) {
-
-    };
-
-    ustawObrot(gear);
-    ustawObrot(gear_2);
-    ustawObrot(ratchet_spring);
-    ustawObrot(ratchet_key);
-    ustawObrot(ratchet);
-    ustawObrot(gear_5);
-    ustawObrot(gear_3);
-    ustawObrot(gear_6);
-    ustawObrot(gear_8);
-    ustawObrot(dial);
-    ustawObrot(frame);
-    ustawObrot(frame_2);
-    ustawObrot(gear_1hour_gear);
-    ustawObrot(gear_7second_gear);
-    ustawObrot(housing_gear_4minute_gear);
-    ustawObrot(new_escapement_gear_9);
-    ustawObrot(new_mainspring);
-    ustawObrot(new_palace);
-
-    objects.push_back(std::move(gear));
-    objects.push_back(std::move(gear_2));
-    objects.push_back(std::move(ratchet_spring));
-    objects.push_back(std::move(ratchet_key));
-    objects.push_back(std::move(ratchet));
-    objects.push_back(std::move(gear_5));
-    objects.push_back(std::move(gear_3));
-    objects.push_back(std::move(gear_6));
-    objects.push_back(std::move(gear_8));
-    objects.push_back(std::move(dial));
-    objects.push_back(std::move(frame));
-    objects.push_back(std::move(frame_2));
-    objects.push_back(std::move(gear_1hour_gear));
-    objects.push_back(std::move(gear_7second_gear));
-    objects.push_back(std::move(housing_gear_4minute_gear));
-    objects.push_back(std::move(new_escapement_gear_9));
-    objects.push_back(std::move(new_mainspring));
-    objects.push_back(std::move(new_palace));
+	addObjects(objects); //dodawanie obiektów do tablicy
 
 
     for (auto& object : objects)
@@ -320,7 +136,7 @@ int main()
 
     unsigned int depthShaderProgram = createDepthShaderProgram();
 
-    glm::vec3 lightPos(5.0f, 10.0f, 5.0f);
+    glm::vec3 lightPos(-5.0f, 10.0f, 5.0f);
     glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
     glm::vec3 objectColor(0.85f, 0.65f, 0.20f);
 
@@ -342,7 +158,6 @@ int main()
             object->update(deltaTime);
         }
 
-        // Pass 1: Render shadow map
         glm::mat4 lightProjection, lightView;
         glm::mat4 lightSpaceMatrix;
         float near_plane = 1.0f, far_plane = 30.0f;
@@ -362,9 +177,8 @@ int main()
         }
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        // Pass 2: Render scene
-        glViewport(0, 0, 800, 600);
-        glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
+        glViewport(0, 0, 1400, 1200);
+        glClearColor(1.0f, 1.0f, 1.00f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glUseProgram(shaderProgram);

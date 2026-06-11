@@ -14,6 +14,7 @@ struct Vec3
 enum class ObjectType
 {
     Gear,
+    Pendulum,
     StaticObject
 };
 

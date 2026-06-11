@@ -2,6 +2,7 @@
 
 #include "ObjLoader.h"
 #include "Gear.h"
+#include "Pendulum.h"
 
 #include <iostream>
 
@@ -32,6 +33,15 @@ std::unique_ptr<Object> ObjectFactory::createObject(
                 rotationSpeed,
                 initialPosition,
                 glm::vec3(objData.center.x, objData.center.y, objData.center.z)
+            );
+
+        case ObjectType::Pendulum:
+            return std::make_unique<Pendulum>(
+                objData.vertices,
+                objData.indices,
+                rotationSpeed,
+                initialPosition,
+                glm::vec3(objData.center.x, objData.center.y, 0.0f)
             );
 
         default:
