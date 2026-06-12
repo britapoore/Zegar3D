@@ -1,12 +1,12 @@
-#pragma once
+ï»¿#pragma once
 #include "ObjFactory.h"
 #include "ObjectsDefinition.h"
 
 #define M_PI 3.14159265358979323846
 
-//tworzenie obiektów 
+//tworzenie obiektï¿½w 
 
-void addObjects(std::vector<std::unique_ptr<Object>>& objects) {
+void addObjects(std::vector<std::unique_ptr<Object>>& objects, unsigned int metalTex, unsigned int goldTex) {
     auto gear_2 = ObjectFactory::createObject(
         ObjectType::Gear,
         "Models/gear_2.obj",
@@ -128,6 +128,21 @@ void addObjects(std::vector<std::unique_ptr<Object>>& objects) {
         glm::vec3(0.0f, 0.0f, 0.0f)
     );
 
+        gear_2->textureID = metalTex; gear_2->hasTexture = true;
+    ratchet_spring->textureID = metalTex; ratchet_spring->hasTexture = true;
+    gear_5->textureID = metalTex; gear_5->hasTexture = true;
+    gear_3->textureID = metalTex; gear_3->hasTexture = true;
+    gear_6->textureID = metalTex; gear_6->hasTexture = true;
+    gear_8->textureID = metalTex; gear_8->hasTexture = true;
+    dial->textureID = goldTex; dial->hasTexture = true;
+    frame->textureID = goldTex; frame->hasTexture = true;
+    frame_2->textureID = goldTex; frame_2->hasTexture = true;
+    gear_1hour_gear->textureID = metalTex; gear_1hour_gear->hasTexture = true;
+    gear_7second_gear->textureID = metalTex; gear_7second_gear->hasTexture = true;
+    housing_gear_4minute_gear->textureID = metalTex; housing_gear_4minute_gear->hasTexture = true;
+    new_escapement_gear_9->textureID = metalTex; new_escapement_gear_9->hasTexture = true;
+    new_mainspring->textureID = metalTex; new_mainspring->hasTexture = true;
+    new_palace->textureID = metalTex; new_palace->hasTexture = true;
     objects.push_back(std::move(gear_2));
     objects.push_back(std::move(ratchet_spring));
     objects.push_back(std::move(gear_5));
@@ -145,4 +160,5 @@ void addObjects(std::vector<std::unique_ptr<Object>>& objects) {
     objects.push_back(std::move(new_palace));
 
 }
+
 

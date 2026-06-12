@@ -11,6 +11,9 @@ class Object {
 public:
     Mesh* mesh = nullptr;
     Transform transform;
+    unsigned int textureID = 0;
+    bool hasTexture = false;
+
 
 protected:
     glm::vec3 initialPosition;
@@ -78,6 +81,16 @@ public:
             GL_FALSE,
             glm::value_ptr(model)
         );
+        
+        unsigned int useTexLoc = glGetUniformLocation(shaderProgram, "useTexture");
+        if (hasTexture) {
+            glActiveTexture(GL_TEXTURE1);
+            glBindTexture(GL_TEXTURE_2D, textureID);
+            glUniform1i(glGetUniformLocation(shaderProgram, "objectTexture"), 1);
+            glUniform1i(useTexLoc, 1);
+        } else {
+            glUniform1i(useTexLoc, 0);
+        }
 
         mesh->draw();
     }

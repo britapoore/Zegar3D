@@ -12,15 +12,18 @@
 #include <memory>
 #include <glm/glm.hpp>
 #include <cmath>
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+
 #define M_PI 3.14159265358979323846
 
 
 // Zmienne kamery
-glm::vec3 cameraPos   = glm::vec3(0.0f, 5.0f, 15.0f);
-glm::vec3 cameraFront = glm::vec3(0.0f, -0.3f, -1.0f);
-glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
+glm::vec3 cameraPos   = glm::vec3(-1.0f, 5.0f, 0.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, -1.0f, 0.0f);
+glm::vec3 cameraUp    = glm::vec3(0.0f, 0.0f,  1.0f);
 float yaw   = -90.0f;
-float pitch = -15.0f;
+float pitch = 0.0f;
 
 void processInput(GLFWwindow *window, float deltaTime)
 {
@@ -37,7 +40,7 @@ void processInput(GLFWwindow *window, float deltaTime)
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
         cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
         
-    float rotationSpeed = 90.0f * deltaTime;
+    float rotationSpeed = 180.0f * deltaTime;
     if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
         yaw -= rotationSpeed;
     if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
@@ -52,9 +55,46 @@ void processInput(GLFWwindow *window, float deltaTime)
     
     glm::vec3 front;
     front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    front.y = sin(glm::radians(pitch));
-    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front.y = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front.z = sin(glm::radians(pitch));
     cameraFront = glm::normalize(front);
+}
+
+unsigned int loadTexture(char const * path)
+{
+    unsigned int textureID;
+    glGenTextures(1, &textureID);
+    
+    int width, height, nrComponents;
+    unsigned char *data = stbi_load(path, &width, &height, &nrComponents, 0);
+    if (data)
+    {
+        GLenum format;
+        if (nrComponents == 1)
+            format = GL_RED;
+        else if (nrComponents == 3)
+            format = GL_RGB;
+        else if (nrComponents == 4)
+            format = GL_RGBA;
+
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        stbi_image_free(data);
+    }
+    else
+    {
+        std::cerr << "Nie udalo sie zaladowac tekstury: " << path << std::endl;
+        stbi_image_free(data);
+    }
+
+    return textureID;
 }
 
 int main()
@@ -101,7 +141,10 @@ int main()
 
     std::vector<std::unique_ptr<Object>> objects; //tablica obiektów 
 
-	addObjects(objects); //dodawanie obiektów do tablicy
+    unsigned int metalTex = loadTexture("Textures/metal.png");
+    unsigned int goldTex = loadTexture("Textures/gold.png");
+	addObjects(objects, metalTex, goldTex); //dodawanie obiektów do tablicy
+
 
 
     for (auto& object : objects)

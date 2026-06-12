@@ -12,6 +12,7 @@ layout (location = 1) in vec3 aNormal;
 out vec3 FragPos;
 out vec3 Normal;
 out vec4 FragPosLightSpace;
+out vec3 LocalPos;
 
 uniform mat4 model;
 uniform mat4 view;
@@ -20,6 +21,7 @@ uniform mat4 lightSpaceMatrix;
 
 void main()
 {
+    LocalPos = aPos;
     FragPos = vec3(model * vec4(aPos, 1.0));
     Normal = mat3(transpose(inverse(model))) * aNormal;  
     FragPosLightSpace = lightSpaceMatrix * vec4(FragPos, 1.0);
@@ -35,12 +37,16 @@ out vec4 FragColor;
 in vec3 FragPos;
 in vec3 Normal;
 in vec4 FragPosLightSpace;
+in vec3 LocalPos;
 
 uniform vec3 lightPos;
 uniform vec3 viewPos;
 uniform vec3 objectColor;
 uniform vec3 lightColor;
 uniform sampler2D shadowMap;
+uniform sampler2D objectTexture;
+uniform bool useTexture;
+
 
 float ShadowCalculation(vec4 fragPosLightSpace, vec3 normal, vec3 lightDir)
 {
@@ -85,7 +91,23 @@ void main()
     vec3 specular = specularStrength * spec * lightColor;  
         
     float shadow = ShadowCalculation(FragPosLightSpace, norm, lightDir);
-    vec3 result = (ambient + (1.0 - shadow) * (diffuse + specular)) * objectColor;
+    
+    vec3 resultColor = objectColor;
+    if (useTexture) {
+        vec3 blendWeights = abs(norm);
+        blendWeights = max(blendWeights - 0.2, 0.0);
+        blendWeights /= dot(blendWeights, vec3(1.0));
+        
+        float scale = 0.5;
+        vec4 texX = texture(objectTexture, LocalPos.yz * scale);
+        vec4 texY = texture(objectTexture, LocalPos.xz * scale);
+        vec4 texZ = texture(objectTexture, LocalPos.xy * scale);
+        
+        vec4 texColor = texX * blendWeights.x + texY * blendWeights.y + texZ * blendWeights.z;
+        resultColor = texColor.rgb;
+    }
+    
+    vec3 result = (ambient + (1.0 - shadow) * (diffuse + specular)) * resultColor;
     FragColor = vec4(result, 1.0);
 }
 )";

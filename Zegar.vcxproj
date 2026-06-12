@@ -24,6 +24,7 @@
     <ProjectGuid>{7728bd26-9a16-4a38-b730-e548866f0f1b}</ProjectGuid>
     <RootNamespace>Zegar</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
