@@ -143,6 +143,7 @@ int main()
 
     unsigned int metalTex = loadTexture("Textures/metal.png");
     unsigned int goldTex = loadTexture("Textures/gold.png");
+	// https://www.printables.com/model/588221-fully-3d-printed-mechanical-clock/comments żródło modeli 3D do zegara
 	addObjects(objects, metalTex, goldTex); //dodawanie obiektów do tablicy
 
 
