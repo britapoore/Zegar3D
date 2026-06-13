@@ -9,7 +9,6 @@
 
 unsigned int ObjLoader::parseObjIndex(const std::string& token)
 {
-    // Nie będzie używane w nowej implementacji, ale zachowujemy dla spójności klasy jeśli jest w .h
     std::string number = token;
     size_t slashPos = token.find('/');
     if (slashPos != std::string::npos) number = token.substr(0, slashPos);
